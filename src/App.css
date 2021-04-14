@@ -1,0 +1,112 @@
+@import url("https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  text-align: center;
+  color: red;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+#title {
+  font-family: "Fredoka One";
+  margin-bottom: 3px;
+}
+
+/* Staging Area */
+#staging-area {
+  height: 15vh;
+  width: 77vw;
+  max-width: 1001px;
+  display: flex;
+  flex-direction: row;
+}
+.col-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 11vw;
+  max-width: 143px;
+}
+.col-stage > button {
+  width: 8vw;
+  max-width: 120px;
+}
+.hover-space {
+  background-color: rgba(255, 255, 0, 0.384);
+  height: 10vh;
+  width: 11vw;
+  max-width: 143px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.hover-token {
+  border-radius: 50%;
+  height: 9vw;
+  width: 9vw;
+  max-height: 78px;
+  max-width: 78px;
+}
+.col-stage:hover > .hover-space > .hover-token {
+  background-color: red;
+  border: 2px solid rgb(77, 74, 74);
+  box-shadow: 2px -1px rgb(77, 74, 74);
+}
+
+/* game board styling */
+#game-board {
+  height: 76vh;
+  width: 77vw;
+  max-width: 1001px;
+  background: blue;
+  display: flex;
+  flex-direction: row;
+  border: 2px solid black;
+  box-shadow: 2px -2px black;
+}
+.game-board-col {
+  flex: 1 1 auto;
+  height: 75vh;
+  width: 11vw;
+  max-width: 143px;
+  border-right: 1px dashed black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.game-space {
+  border-radius: 50%;
+  height: 9vw;
+  width: 9vw;
+  max-height: 78px;
+  max-width: 78px;
+  background-color: white;
+  border: 1px solid black;
+  box-shadow: 3px -2px black;
+}
+.game-space-red {
+  border-radius: 50%;
+  height: 9vw;
+  width: 9vw;
+  max-height: 78px;
+  max-width: 78px;
+  background-color: red;
+  border: 1px solid black;
+  box-shadow: 1px -1px black;
+}
+.game-space-yellow {
+  border-radius: 50%;
+  height: 9vw;
+  width: 9vw;
+  max-height: 78px;
+  max-width: 78px;
+  background-color: yellow;
+  border: 1px solid black;
+  box-shadow: 1px -1px black;
+}
