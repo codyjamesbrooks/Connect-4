@@ -1,17 +1,6 @@
 import React from "react";
 
 class StagingArea extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      hover: false,
-    };
-    this.toggleHover = this.toggleHover.bind(this);
-  }
-
-  toggleHover() {
-    this.setState((state) => ({ hover: !state.hover }));
-  }
   render() {
     let hoverToken =
       this.props.currentTurn === "Red" ? (

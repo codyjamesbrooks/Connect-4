@@ -1,18 +1,19 @@
 import React from "react";
+import { v4 as uuidv4 } from "uuid";
 
 class GameBoard extends React.Component {
   render() {
     let boardLayout = this.props.tokensInPlay.map((column) => {
       return (
-        <div className="game-board-col">
+        <div key={uuidv4()} className="game-board-col">
           {column.map((space) => {
             switch (space) {
               case "Red":
-                return <div className="game-space-red"></div>;
+                return <div key={uuidv4()} className="game-space-red"></div>;
               case "Yellow":
-                return <div className="game-space-yellow"></div>;
+                return <div key={uuidv4()} className="game-space-yellow"></div>;
               default:
-                return <div className="game-space"></div>;
+                return <div key={uuidv4()} className="game-space"></div>;
             }
           })}
         </div>

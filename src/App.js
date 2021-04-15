@@ -6,7 +6,13 @@ import GameBoard from "./GameBoard";
 
 import checkBoardForWin from "./CheckBoardForWin";
 
-let emptyGame = [...Array(7)].map((e) => ["", "", "", "", "", ""]);
+let emptyGame = [];
+for (let i = 0; i <= 6; i++) {
+  emptyGame[i] = [];
+  for (let j = 0; j <= 5; j++) {
+    emptyGame[i].push("");
+  }
+}
 
 class App extends React.Component {
   constructor(props) {
@@ -21,9 +27,11 @@ class App extends React.Component {
 
   handleColumnButtonClick(e) {
     let colNumber = e.target.value;
+    console.log(colNumber, this.state.tokensInPlay[colNumber][0]);
     if (this.state.tokensInPlay[colNumber][0] === "") {
       let newArray = this.state.tokensInPlay.slice();
       newArray[colNumber].splice(0, 1, this.state.color);
+      console.log(newArray);
       this.setState({ tokensInPlay: newArray });
       this.switchColor();
       this.startfallingToken(colNumber);
@@ -59,12 +67,8 @@ class App extends React.Component {
     newColumn.unshift(...shiftedEmpty);
 
     if (newColumn === this.state.tokensInPlay[colNumber]) {
-      console.log("Clearing interval, calling check");
+      console.log("Clearing interval");
       clearInterval(this.fallingToken);
-      let outcome = checkBoardForWin(this.state.tokensInPlay);
-      if (outcome) {
-        this.setState({ gameOutCome: true });
-      }
     } else {
       let newArray = this.state.tokensInPlay.slice();
       newArray.splice(colNumber, 1, newColumn);
