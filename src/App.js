@@ -27,11 +27,9 @@ class App extends React.Component {
 
   handleColumnButtonClick(e) {
     let colNumber = e.target.value;
-    console.log(colNumber, this.state.tokensInPlay[colNumber][0]);
     if (this.state.tokensInPlay[colNumber][0] === "") {
       let newArray = this.state.tokensInPlay.slice();
       newArray[colNumber].splice(0, 1, this.state.color);
-      console.log(newArray);
       this.setState({ tokensInPlay: newArray });
       this.switchColor();
       this.startfallingToken(colNumber);
@@ -54,6 +52,7 @@ class App extends React.Component {
   }
 
   tokenFallToBottem(colNumber) {
+    console.log("falling call");
     let newColumn = this.state.tokensInPlay[colNumber].slice();
     // get larest empty index
     let largestEmptyIndex = 0;
@@ -65,9 +64,7 @@ class App extends React.Component {
 
     let shiftedEmpty = newColumn.splice(largestEmptyIndex, 1);
     newColumn.unshift(...shiftedEmpty);
-
-    if (newColumn === this.state.tokensInPlay[colNumber]) {
-      console.log("Clearing interval");
+    if (arrayEquals(newColumn, this.state.tokensInPlay[colNumber])) {
       clearInterval(this.fallingToken);
     } else {
       let newArray = this.state.tokensInPlay.slice();
@@ -94,3 +91,12 @@ class App extends React.Component {
 }
 
 export default App;
+
+function arrayEquals(a, b) {
+  return (
+    Array.isArray(a) &&
+    Array.isArray(b) &&
+    a.length === b.length &&
+    a.every((val, index) => val === b[index])
+  );
+}
