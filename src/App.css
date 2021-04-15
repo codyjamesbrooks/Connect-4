@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fredoka+One&family=Roboto&display=swap");
 * {
   margin: 0;
   padding: 0;
@@ -11,9 +11,14 @@ body {
   align-items: center;
   flex-direction: column;
 }
+/* --------------- Title And Author -------------- */
 #title {
   font-family: "Fredoka One";
   margin-bottom: 3px;
+}
+#author {
+  margin-top: 3px;
+  font-family: "Roboto";
 }
 
 /* Staging Area */
@@ -37,7 +42,7 @@ body {
   max-width: 120px;
 }
 .hover-space {
-  background-color: rgba(255, 255, 0, 0.384);
+  /* background-color: rgba(255, 255, 0, 0.384); */
   height: 10vh;
   width: 11vw;
   max-width: 143px;
@@ -73,6 +78,7 @@ body {
   display: flex;
   flex-direction: row;
   border: 2px solid black;
+  border-radius: 0.5em;
   box-shadow: 2px -2px black;
 }
 .game-board-col {
@@ -80,7 +86,6 @@ body {
   height: 75vh;
   width: 11vw;
   max-width: 143px;
-  border-right: 1px dashed black;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -115,4 +120,29 @@ body {
   background-color: yellow;
   border: 1px solid black;
   box-shadow: 1px -1px black;
+}
+
+/*---------------Winning Banner Style ------------*/
+.winning-banner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 75vw;
+  border: 5px solid black;
+  border-radius: 1em;
+  height: 30vh;
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-size: 1.2em;
+  font-family: "Roboto";
+}
+#winning-banner-red {
+  background: red;
+}
+#winning-banner-yellow {
+  background: yellow;
 }

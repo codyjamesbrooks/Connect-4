@@ -3,7 +3,7 @@ import "./App.css";
 
 import StagingArea from "./StagingArea";
 import GameBoard from "./GameBoard";
-
+import WinnersComponent from "./WinnersComponent";
 import checkBoardForWin from "./CheckBoardForWin";
 
 // Helper function used to test array equals
@@ -31,7 +31,7 @@ class App extends React.Component {
     this.state = {
       tokensInPlay: emptyGame,
       color: "Red",
-      gameOutCome: false,
+      gameOutCome: [false, ""],
     };
     this.handleColumnButtonClick = this.handleColumnButtonClick.bind(this);
   }
@@ -78,7 +78,9 @@ class App extends React.Component {
     if (arrayEquals(newColumn, this.state.tokensInPlay[colNumber])) {
       clearInterval(this.fallingToken);
       let outcome = checkBoardForWin(this.state.tokensInPlay);
-      console.log(outcome);
+      if (outcome[0]) {
+        this.setState({ gameOutCome: [true, outcome[1]] });
+      }
     } else {
       let newArray = this.state.tokensInPlay.slice();
       newArray.splice(colNumber, 1, newColumn);
@@ -91,13 +93,14 @@ class App extends React.Component {
       <div id="app-wrapper">
         <div id="title">
           <h1>Connect Four</h1>
-          <h6>coded by cody</h6>
         </div>
         <StagingArea
           handleColumnButtonClick={this.handleColumnButtonClick}
           currentTurn={this.state.color}
         />
         <GameBoard tokensInPlay={this.state.tokensInPlay} />
+        <WinnersComponent winnersColor={this.state.gameOutCome} />
+        <h6 id="author">coded by cody</h6>
       </div>
     );
   }
