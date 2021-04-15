@@ -1,7 +1,29 @@
 import React from "react";
 
 class StagingArea extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      hover: false,
+    };
+    this.toggleHover = this.toggleHover.bind(this);
+  }
+
+  toggleHover() {
+    this.setState((state) => ({ hover: !state.hover }));
+  }
   render() {
+    let hoverToken =
+      this.props.currentTurn === "Red" ? (
+        <div className="hover-space">
+          <div className="hover-token-red"></div>
+        </div>
+      ) : (
+        <div className="hover-space">
+          <div className="hover-token-yellow"></div>
+        </div>
+      );
+
     return (
       <div id="staging-area">
         <div className="col-stage">
@@ -13,9 +35,7 @@ class StagingArea extends React.Component {
             {" "}
             1{" "}
           </button>
-          <div className="hover-space">
-            <div className="hover-token"></div>
-          </div>
+          {hoverToken}
         </div>
         <div className="col-stage">
           <button
@@ -26,9 +46,7 @@ class StagingArea extends React.Component {
             {" "}
             2{" "}
           </button>
-          <div className="hover-space">
-            <div className="hover-token"></div>
-          </div>
+          {hoverToken}
         </div>
         <div className="col-stage">
           <button
@@ -39,9 +57,7 @@ class StagingArea extends React.Component {
             {" "}
             3{" "}
           </button>
-          <div className="hover-space">
-            <div className="hover-token"></div>
-          </div>
+          {hoverToken}
         </div>
         <div className="col-stage">
           <button
@@ -52,9 +68,7 @@ class StagingArea extends React.Component {
             {" "}
             4{" "}
           </button>
-          <div className="hover-space">
-            <div className="hover-token"></div>
-          </div>
+          {hoverToken}
         </div>
         <div className="col-stage">
           <button
@@ -65,9 +79,7 @@ class StagingArea extends React.Component {
             {" "}
             5{" "}
           </button>
-          <div className="hover-space">
-            <div className="hover-token"></div>
-          </div>
+          {hoverToken}
         </div>
         <div className="col-stage">
           <button
@@ -78,9 +90,7 @@ class StagingArea extends React.Component {
             {" "}
             6{" "}
           </button>
-          <div className="hover-space">
-            <div className="hover-token"></div>
-          </div>
+          {hoverToken}
         </div>
         <div className="col-stage">
           <button
@@ -91,12 +101,16 @@ class StagingArea extends React.Component {
             {" "}
             7{" "}
           </button>
-          <div className="hover-space">
-            <div className="hover-token"></div>
-          </div>
+          {hoverToken}
         </div>
       </div>
     );
   }
 }
 export default StagingArea;
+/*  
+
+
+
+
+*/

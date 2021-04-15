@@ -4,6 +4,8 @@ import "./App.css";
 import StagingArea from "./StagingArea";
 import GameBoard from "./GameBoard";
 
+import checkBoardForWin from "./CheckBoardForWin";
+
 let emptyGame = [...Array(7)].map((e) => ["", "", "", "", "", ""]);
 
 class App extends React.Component {
@@ -36,38 +38,31 @@ class App extends React.Component {
   }
 
   startfallingToken(colNumber) {
-    this.fallingToken = setInterval(this.tokenFallToBottem(colNumber), 300);
+    this.fallingToken = setInterval(
+      () => this.tokenFallToBottem(colNumber),
+      300
+    );
   }
 
   tokenFallToBottem(colNumber) {
-    let currentColumn = this.state.tokensInPlay[colNumber].slice();
-    let newColumn = [];
-    let newArray = this.state.tokensInPlay.slice();
+    let newColumn = this.state.tokensInPlay[colNumber].slice();
+    // get larest empty index
+    let largestEmptyIndex = 0;
     for (let i = 0; i <= 5; i++) {
-      if (currentColumn[i] !== "" && i < 5) {
-        // look ahead
-        if (currentColumn[i + 1] === "") {
-          newColumn = [
-            ...currentColumn.slice(0, i),
-            "",
-            currentColumn[i],
-            ...currentColumn.slice(i + 2),
-          ];
-          break;
-        } else {
-          // end the loop, tokens are at the bottom of the game board.
-          newColumn = currentColumn.slice();
-          break;
-        }
+      if (newColumn[i] === "" && i > largestEmptyIndex) {
+        largestEmptyIndex = i;
       }
     }
-    if (newColumn !== currentColumn) {
-      newArray.splice(colNumber, 1, newColumn);
-      this.setState((state) => ({
-        tokensInPlay: newArray,
-      }));
-    } else {
+
+    let shiftedEmpty = newColumn.splice(largestEmptyIndex, 1);
+    newColumn.unshift(...shiftedEmpty);
+
+    if (newColumn === this.state.tokensInPlay[colNumber]) {
       clearInterval(this.fallingToken);
+    } else {
+      let newArray = this.state.tokensInPlay.slice();
+      newArray.splice(colNumber, 1, newColumn);
+      this.setState({ tokensInPlay: newArray });
     }
   }
 
@@ -78,7 +73,10 @@ class App extends React.Component {
           <h1>Connect Four</h1>
           <h6>coded by cody</h6>
         </div>
-        <StagingArea handleColumnButtonClick={this.handleColumnButtonClick} />
+        <StagingArea
+          handleColumnButtonClick={this.handleColumnButtonClick}
+          currentTurn={this.state.color}
+        />
         <GameBoard tokensInPlay={this.state.tokensInPlay} />
       </div>
     );

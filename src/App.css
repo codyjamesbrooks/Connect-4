@@ -45,16 +45,22 @@ body {
   justify-content: center;
   align-items: center;
 }
-.hover-token {
+.hover-token-yellow,
+.hover-token-red {
   border-radius: 50%;
   height: 9vw;
   width: 9vw;
   max-height: 78px;
   max-width: 78px;
 }
-.col-stage:hover > .hover-space > .hover-token {
-  background-color: red;
-  border: 2px solid rgb(77, 74, 74);
+.col-stage:hover > .hover-space > .hover-token-red {
+  background: red;
+  border: 2px solid rgb(15, 15, 15);
+  box-shadow: 2px -1px rgb(77, 74, 74);
+}
+.col-stage:hover > .hover-space > .hover-token-yellow {
+  background: yellow;
+  border: 2px solid rgb(15, 15, 15);
   box-shadow: 2px -1px rgb(77, 74, 74);
 }
 
