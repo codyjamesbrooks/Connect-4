@@ -14,6 +14,7 @@ class App extends React.Component {
     this.state = {
       tokensInPlay: emptyGame,
       color: "Red",
+      gameOutCome: false,
     };
     this.handleColumnButtonClick = this.handleColumnButtonClick.bind(this);
   }
@@ -58,7 +59,12 @@ class App extends React.Component {
     newColumn.unshift(...shiftedEmpty);
 
     if (newColumn === this.state.tokensInPlay[colNumber]) {
+      console.log("Clearing interval, calling check");
       clearInterval(this.fallingToken);
+      let outcome = checkBoardForWin(this.state.tokensInPlay);
+      if (outcome) {
+        this.setState({ gameOutCome: true });
+      }
     } else {
       let newArray = this.state.tokensInPlay.slice();
       newArray.splice(colNumber, 1, newColumn);
