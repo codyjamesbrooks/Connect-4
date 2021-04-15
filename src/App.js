@@ -6,6 +6,17 @@ import GameBoard from "./GameBoard";
 
 import checkBoardForWin from "./CheckBoardForWin";
 
+// Helper function used to test array equals
+function arrayEquals(a, b) {
+  return (
+    Array.isArray(a) &&
+    Array.isArray(b) &&
+    a.length === b.length &&
+    a.every((val, index) => val === b[index])
+  );
+}
+
+// Populate a game array
 let emptyGame = [];
 for (let i = 0; i <= 6; i++) {
   emptyGame[i] = [];
@@ -47,14 +58,13 @@ class App extends React.Component {
   startfallingToken(colNumber) {
     this.fallingToken = setInterval(
       () => this.tokenFallToBottem(colNumber),
-      300
+      100
     );
   }
 
   tokenFallToBottem(colNumber) {
     console.log("falling call");
     let newColumn = this.state.tokensInPlay[colNumber].slice();
-    // get larest empty index
     let largestEmptyIndex = 0;
     for (let i = 0; i <= 5; i++) {
       if (newColumn[i] === "" && i > largestEmptyIndex) {
@@ -64,8 +74,11 @@ class App extends React.Component {
 
     let shiftedEmpty = newColumn.splice(largestEmptyIndex, 1);
     newColumn.unshift(...shiftedEmpty);
+
     if (arrayEquals(newColumn, this.state.tokensInPlay[colNumber])) {
       clearInterval(this.fallingToken);
+      let outcome = checkBoardForWin(this.state.tokensInPlay);
+      console.log(outcome);
     } else {
       let newArray = this.state.tokensInPlay.slice();
       newArray.splice(colNumber, 1, newColumn);
@@ -91,12 +104,3 @@ class App extends React.Component {
 }
 
 export default App;
-
-function arrayEquals(a, b) {
-  return (
-    Array.isArray(a) &&
-    Array.isArray(b) &&
-    a.length === b.length &&
-    a.every((val, index) => val === b[index])
-  );
-}
