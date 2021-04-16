@@ -4,92 +4,53 @@ class StagingArea extends React.Component {
   render() {
     let hoverToken =
       this.props.currentTurn === "Red" ? (
-        <div className="hover-space">
-          <div className="hover-token-red"></div>
-        </div>
+        <div className="hover-token-red"></div>
       ) : (
-        <div className="hover-space">
-          <div className="hover-token-yellow"></div>
-        </div>
+        <div className="hover-token-yellow"></div>
       );
 
     return (
       <div id="staging-area">
-        <div className="col-stage">
-          <button
-            id="col-1-button"
-            value={0}
-            onClick={(e) => this.props.handleColumnButtonClick(e)}
-          >
-            {" "}
-            1{" "}
-          </button>
+        <div
+          className="col-stage"
+          onClick={(e) => this.props.handleTokenDropClick(0)}
+        >
           {hoverToken}
         </div>
-        <div className="col-stage">
-          <button
-            id="col-2-button"
-            value={1}
-            onClick={(e) => this.props.handleColumnButtonClick(e)}
-          >
-            {" "}
-            2{" "}
-          </button>
+        <div
+          className="col-stage"
+          onClick={(e) => this.props.handleTokenDropClick(1)}
+        >
           {hoverToken}
         </div>
-        <div className="col-stage">
-          <button
-            id="col-3-button"
-            value={2}
-            onClick={(e) => this.props.handleColumnButtonClick(e)}
-          >
-            {" "}
-            3{" "}
-          </button>
+        <div
+          className="col-stage"
+          onClick={(e) => this.props.handleTokenDropClick(2)}
+        >
           {hoverToken}
         </div>
-        <div className="col-stage">
-          <button
-            id="col-4-button"
-            value={3}
-            onClick={(e) => this.props.handleColumnButtonClick(e)}
-          >
-            {" "}
-            4{" "}
-          </button>
+        <div
+          className="col-stage"
+          onClick={(e) => this.props.handleTokenDropClick(3)}
+        >
           {hoverToken}
         </div>
-        <div className="col-stage">
-          <button
-            id="col-5-button"
-            value={4}
-            onClick={(e) => this.props.handleColumnButtonClick(e)}
-          >
-            {" "}
-            5{" "}
-          </button>
+        <div
+          className="col-stage"
+          onClick={(e) => this.props.handleTokenDropClick(4)}
+        >
           {hoverToken}
         </div>
-        <div className="col-stage">
-          <button
-            id="col-6-button"
-            value={5}
-            onClick={(e) => this.props.handleColumnButtonClick(e)}
-          >
-            {" "}
-            6{" "}
-          </button>
+        <div
+          className="col-stage"
+          onClick={(e) => this.props.handleTokenDropClick(5)}
+        >
           {hoverToken}
         </div>
-        <div className="col-stage">
-          <button
-            id="col-7-button"
-            value={6}
-            onClick={(e) => this.props.handleColumnButtonClick(e)}
-          >
-            {" "}
-            7{" "}
-          </button>
+        <div
+          className="col-stage"
+          onClick={(e) => this.props.handleTokenDropClick(6)}
+        >
           {hoverToken}
         </div>
       </div>

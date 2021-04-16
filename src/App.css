@@ -13,84 +13,66 @@ body {
 }
 #app-wrapper {
   display: grid;
-  width: auto;
-  max-width: 1200px;
-  border: 3px solid black;
-  grid-template-columns: 1fr minmax(77vw, 1001px) 1fr;
-  grid-template-rows: auto;
+  width: 98vw;
+  max-width: 1100px;
+  min-width: 600px;
+  grid-template-columns: 1fr 10fr 1fr;
+  grid-template-rows: 15vh 78vh;
   grid-template-areas:
-    "titleLeft staging-area titleRight"
-    "titleLeft game-board titleRight";
-
-  justify-content: center;
-  justify-items: center;
-  align-items: center;
+    "titleLeft stagingArea titleRight"
+    "titleLeft gameBoard titleRight";
+  gap: 5px;
 }
-/* --------------- Title And Author -------------- */
+/* --------------- Connect4 Label Side Bars -------------- */
 .title {
+  padding: 10px 1px;
   font-family: "Fredoka One";
-  width: 61vh;
   font-size: 2em;
   text-shadow: -1px 1px 0 black, 1px 1px 0 black, 1px -1px 0 black,
     -1px -1px 0 black;
   border-radius: 5em;
   border: 5px solid rgba(0, 0, 0, 0.74);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transform: rotate(90deg);
+  writing-mode: vertical-rl;
+  align-self: center;
 }
 #title-left {
   grid-area: titleLeft;
+  justify-self: end;
   color: red;
 }
 #title-right {
   grid-area: titleRight;
+  justify-self: start;
   color: yellow;
 }
 /*----------------------- Staging Area ------------------*/
 #staging-area {
-  grid-area: staging-area;
-  height: 15vh;
-  width: 77vw;
-  max-width: 1001px;
-  display: flex;
-  flex-direction: row;
-}
-.col-stage {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  width: 11vw;
-  max-width: 143px;
-}
-.col-stage > button {
-  width: 8vw;
-  max-width: 120px;
-}
-.hover-space {
-  height: 10vh;
-  width: 11vw;
-  max-width: 143px;
+  grid-area: stagingArea;
   display: flex;
   justify-content: center;
   align-items: center;
 }
+.col-stage {
+  flex: 1 1 auto;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
 .hover-token-yellow,
 .hover-token-red {
   border-radius: 50%;
-  height: 9vw;
-  width: 9vw;
+  height: 12vmin;
+  width: 12vmin;
   max-height: 78px;
   max-width: 78px;
 }
-.col-stage:hover > .hover-space > .hover-token-red {
+.col-stage:hover > .hover-token-red {
   background: red;
   border: 2px solid rgb(15, 15, 15);
   box-shadow: 2px -1px rgb(77, 74, 74);
 }
-.col-stage:hover > .hover-space > .hover-token-yellow {
+.col-stage:hover > .hover-token-yellow {
   background: yellow;
   border: 2px solid rgb(15, 15, 15);
   box-shadow: 2px -1px rgb(77, 74, 74);
@@ -98,53 +80,44 @@ body {
 
 /* ---------------- game board styling --------------- */
 #game-board {
-  grid-area: game-board;
-  height: 76vh;
-  width: 77vw;
-  max-width: 1001px;
+  grid-area: gameBoard;
   background: blue;
   display: flex;
   flex-direction: row;
   border: 2px solid black;
-  border-radius: 0.5em;
+  border-radius: 0.3em;
   box-shadow: 2px -2px black;
 }
 .game-board-col {
   flex: 1 1 auto;
-  height: 75vh;
-  width: 11vw;
-  max-width: 143px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
 }
 .game-space {
+  flex: 0 1 auto;
+  height: 11vmin;
+  width: 11vmin;
   border-radius: 50%;
-  height: 9vw;
-  width: 9vw;
-  max-height: 78px;
-  max-width: 78px;
   background-color: white;
   border: 1px solid black;
   box-shadow: 3px -2px black;
 }
 .game-space-red {
+  flex: 0 1 auto;
+  height: 11vmin;
+  width: 11vmin;
   border-radius: 50%;
-  height: 9vw;
-  width: 9vw;
-  max-height: 78px;
-  max-width: 78px;
   background-color: red;
   border: 1px solid black;
   box-shadow: 1px -1px black;
 }
 .game-space-yellow {
+  flex: 0 1 auto;
+  height: 11vmin;
+  width: 11vmin;
   border-radius: 50%;
-  height: 9vw;
-  width: 9vw;
-  max-height: 78px;
-  max-width: 78px;
   background-color: yellow;
   border: 1px solid black;
   box-shadow: 1px -1px black;

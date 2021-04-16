@@ -24,7 +24,7 @@ class App extends React.Component {
       color: "Red",
       gameOutCome: [false, ""],
     };
-    this.handleColumnButtonClick = this.handleColumnButtonClick.bind(this);
+    this.handleTokenDropClick = this.handleTokenDropClick.bind(this);
     this.handleResetGameClick = this.handleResetGameClick.bind(this);
   }
 
@@ -36,8 +36,8 @@ class App extends React.Component {
     });
   }
 
-  handleColumnButtonClick(e) {
-    let colNumber = e.target.value;
+  handleTokenDropClick(e) {
+    let colNumber = e;
     if (this.state.tokensInPlay[colNumber][0] === "") {
       let newArray = this.state.tokensInPlay.slice();
       newArray[colNumber].splice(0, 1, this.state.color);
@@ -58,10 +58,12 @@ class App extends React.Component {
   startfallingToken(colNumber) {
     this.fallingToken = setInterval(
       () => this.tokenFallToBottem(colNumber),
-      100
+      60
     );
   }
 
+  // todo refactor this function.
+  // pull the interval clear and the state change out.
   tokenFallToBottem(colNumber) {
     console.log("falling call");
     let newColumn = this.state.tokensInPlay[colNumber].slice();
@@ -98,7 +100,7 @@ class App extends React.Component {
           <h1>Connect Four</h1>
         </div>
         <StagingArea
-          handleColumnButtonClick={this.handleColumnButtonClick}
+          handleTokenDropClick={this.handleTokenDropClick}
           currentTurn={this.state.color}
         />
         <GameBoard tokensInPlay={this.state.tokensInPlay} />
