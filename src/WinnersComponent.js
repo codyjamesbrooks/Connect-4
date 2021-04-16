@@ -13,7 +13,8 @@ class WinnersComponent extends React.Component {
           <h1>Congulations {this.props.winnersColor} you're the best!</h1>
           <h3>Or you are slight better than {losingColor}!</h3>
           <h5>Possibly just on this occasion....</h5>
-          <h6>...Its a simple game. Calm down winning isn't everything...</h6>
+          <h6>...It's a simple game. Calm down. Winning isn't everything...</h6>
+          <button onClick={this.props.handleResetGameClick}>Play Again?</button>
         </div>
       );
     } else {

@@ -16,24 +16,24 @@ function arrayEquals(a, b) {
   );
 }
 
-// Populate a game array
-let emptyGame = [];
-for (let i = 0; i <= 6; i++) {
-  emptyGame[i] = [];
-  for (let j = 0; j <= 5; j++) {
-    emptyGame[i].push("");
-  }
-}
-
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      tokensInPlay: emptyGame,
+      tokensInPlay: [...Array(7)].map((e) => Array(6).fill("")),
       color: "Red",
       gameOutCome: [false, ""],
     };
     this.handleColumnButtonClick = this.handleColumnButtonClick.bind(this);
+    this.handleResetGameClick = this.handleResetGameClick.bind(this);
+  }
+
+  handleResetGameClick() {
+    this.setState({
+      tokensInPlay: [...Array(7)].map((e) => Array(6).fill("")),
+      color: "Red",
+      gameOutCome: [false, ""],
+    });
   }
 
   handleColumnButtonClick(e) {
@@ -91,7 +91,10 @@ class App extends React.Component {
   render() {
     return (
       <div id="app-wrapper">
-        <div id="title">
+        <div className="title" id="title-left">
+          <h1>Connect Four</h1>
+        </div>
+        <div className="title" id="title-right">
           <h1>Connect Four</h1>
         </div>
         <StagingArea
@@ -99,8 +102,10 @@ class App extends React.Component {
           currentTurn={this.state.color}
         />
         <GameBoard tokensInPlay={this.state.tokensInPlay} />
-        <WinnersComponent winnersColor={this.state.gameOutCome} />
-        <h6 id="author">coded by cody</h6>
+        <WinnersComponent
+          winnersColor={this.state.gameOutCome}
+          handleResetGameClick={this.handleResetGameClick}
+        />
       </div>
     );
   }
