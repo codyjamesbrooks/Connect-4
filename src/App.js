@@ -28,12 +28,19 @@ class App extends React.Component {
     this.handleResetGameClick = this.handleResetGameClick.bind(this);
   }
 
+  componentDidMount() {
+    document.body.style.background =
+      "linear-gradient(to right, rgba(255, 0, 0, .5) , white)";
+  }
+
   handleResetGameClick() {
     this.setState({
       tokensInPlay: [...Array(7)].map((e) => Array(6).fill("")),
       color: "Red",
       gameOutCome: [false, ""],
     });
+    document.body.style.background =
+      "linear-gradient(to right, rgba(255, 0, 0, .5) , white)";
   }
 
   handleTokenDropClick(e) {
@@ -50,8 +57,12 @@ class App extends React.Component {
   switchColor() {
     if (this.state.color === "Red") {
       this.setState({ color: "Yellow" });
+      document.body.style.background =
+        "linear-gradient(to left, rgba(255, 255, 0, .5) , white)";
     } else {
       this.setState({ color: "Red" });
+      document.body.style.background =
+        "linear-gradient(to right, rgba(255, 0, 0, .5) , white)";
     }
   }
 
@@ -65,7 +76,6 @@ class App extends React.Component {
   // todo refactor this function.
   // pull the interval clear and the state change out.
   tokenFallToBottem(colNumber) {
-    console.log("falling call");
     let newColumn = this.state.tokensInPlay[colNumber].slice();
     let largestEmptyIndex = 0;
     for (let i = 0; i <= 5; i++) {
